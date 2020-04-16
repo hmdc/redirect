@@ -4,12 +4,13 @@ This web app returns 301 redirect from src regexp to destination defined in ```c
 
 ## adding a redirect
 
-* Open ```config/default.json```
+* Open ```config/default.js```
 * Add an entry under ```redirectMap``` conforming to the already existing examples. You can add and set the elements ```withPath``` and ```withQs```, which strip paths or query strings when redirecting to the destination. By default, ```withPath``` and ```withQs``` is set to true.
 
 ```node  
-{
+module.exports = {
     "defaultRedirect": "https://www.iq.harvard.edu",
+    "port": process.env.PORT || 3000, // required for heroku
     "redirectMap": [
         { "src": "^(.*\\.)cga\\.harvard\\.edu$", "dst": "https://www.gis.harvard.edu", "withPath": false },
     ]
@@ -47,6 +48,9 @@ As you can see, the request is successfully redirected.
 
 ## deploying to heroku
 
+**app name** hmdc-www6-legacy-redirect
+**hostname** hmdc-www6-legacy-redirect.hmdc.harvard.edu
+
 Typically when we redirect sites, we set the CNAME to www6-vm1.hmdc.harvard.edu or www.hmdc.harvard.edu in the noc portal.
 
 If your tests pass, you can just push to the heroku origin first
@@ -65,3 +69,6 @@ You can then CNAME ```cga.harvard.edu``` to the Heroku endpoint printed and relo
 
 Then you can test (again) live.
 
+## app creation steps (no need to perform these steps, listed for posterity)
+```heroku apps:create -t g-harvard hmdc-www6-legacy-redirect```
+```git push heroku```

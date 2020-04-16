@@ -1,5 +1,8 @@
-{
+const process = require('process');
+
+module.exports = {
     "defaultRedirect": "https://www.iq.harvard.edu",
+    "port": process.env.PORT || 3000,
     "redirectMap": [
         { "src": "^(.*\\.)cga\\.harvard\\.edu$", "dst": "https://www.gis.harvard.edu" },
         { "src": "^(.*\\.)africamap\\.harvard\\.edu$", "dst": "https://worldmap.harvard.edu/africamap" },
@@ -10,5 +13,4 @@
         { "src": "^(.*\\.)?support\\.hmdc\\.harvard\\.edu$", "dst": "https://css.iq.harvard.edu" },
         { "src": "^(.*\\.)?votegps\\.hmdc\\.harvard\\.edu$", "dst": "https://votegps.org"}
     ]
-    
 }
